@@ -228,6 +228,65 @@ body {
   box-shadow: 0 8px 24px rgba(82, 183, 136, 0.32);
 }
 
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid rgba(82, 183, 136, 0.4);
+}
+
+.btn-outline:hover {
+  background: rgba(82, 183, 136, 0.08);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ─── Open to work / availability ────────────── */
+
+.hero-availability {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  background: rgba(82, 183, 136, 0.08);
+  border: 1px solid rgba(82, 183, 136, 0.3);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+}
+
+.open-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+
+.role-targets {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
 .social-links {
   display: flex;
   gap: 1.25rem;
@@ -286,6 +345,7 @@ body {
 .delay-2 { animation-delay: 0.3s; }
 .delay-3 { animation-delay: 0.45s; }
 .delay-4 { animation-delay: 0.6s; }
+.delay-5 { animation-delay: 0.75s; }
 
 @keyframes fadeUp {
   to {
@@ -781,6 +841,16 @@ a.contact-item:hover {
 
   .hero-character {
     display: none;
+  }
+
+  .hero-availability {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .role-targets {
+    font-size: 0.7rem;
   }
 
   .stats-grid {
