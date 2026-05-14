@@ -1,83 +1,283 @@
-const achievements = [
+const stats = [
+  { value: '4+', label: 'years at Programiz' },
+  { value: '40+', label: 'institutions on B2B' },
+  { value: '18+', label: 'features shipped' },
+  { value: '6K/mo', label: 'organic traffic driven' }
+];
+
+const timeline = [
   {
-    title: "Builder-First Ecosystem & Guided Projects (Co-Owner)",
-    what: "Co-owned and built a builder-first learning ecosystem enabling learners to create real, portfolio-ready projects.",
-    how: "Collaborated across product, design, and platform teams to implement task-check infrastructure and ecosystem features in Programiz PRO.",
-    impact: "Shifted users from passive learners to hands-on project builders, driving platform-wide engagement."
+    year: '2022',
+    theme: 'Foundation',
+    items: [
+      {
+        title: 'Joined Programiz',
+        desc: 'Stepped into a live platform used by millions of learners — picked up the codebase and started shipping quickly.'
+      },
+      {
+        title: 'SQL Editor Integration',
+        desc: 'Built a standalone SQL editor as a reusable platform entity. Ended up part of one of the top 5 most-used courses on the platform.'
+      },
+      {
+        title: 'JavaScript DOM Challenge Infrastructure',
+        desc: 'Built execution and verification infrastructure for browser-based JS challenges — foundation for interactive challenge workflows.'
+      },
+      {
+        title: 'Lesson Funnel Improvements',
+        desc: 'Mapped user drop-off across lesson flows and iterated on UX to improve progression.'
+      }
+    ]
   },
   {
-    title: "User Interviews & Listening Cycles",
-    what: "Led structured user-listening initiatives to uncover learner pain points.",
-    how: "Coordinated interviews via email, Discord, and US professor connections, ran user surveys and usability testing.",
-    impact: "Influenced product roadmap decisions and reduced guesswork in future releases."
+    year: '2023',
+    theme: 'Platform & Scale',
+    items: [
+      {
+        title: 'DataMentor Homepage Revamp',
+        desc: '1-day sprint alongside the CEO. Result: ~6K organic visits/month, 56% from the US.'
+      },
+      {
+        title: 'B2B Pro Teams — Frontend Owner',
+        desc: '6 months owning the B2B product end-to-end: dashboards, team onboarding, assignments, reporting, settings. Adopted by 40+ institutions globally.'
+      },
+      {
+        title: 'Sales & Payments Infrastructure (Paddle)',
+        desc: 'Built admin dashboards and campaign logic for Paddle plans, coupons, and sale events — enabling rapid revenue experiments.'
+      },
+      {
+        title: 'Storybook & Shared Components',
+        desc: 'Standardized UI with a shared component system and Storybook, cutting duplication and increasing dev velocity.'
+      }
+    ]
   },
   {
-    title: "Code Visualization Platform (DSA)",
-    what: "Built real-time interactive visualizers for Stack and Queue data structures.",
-    how: "Designed and developed using Python, React, and Node.js to showcase algorithm execution in real-time.",
-    impact: "Enabled interactive learning for beginners and career switchers, with proven user engagement."
+    year: '2024',
+    theme: 'Data & AI',
+    items: [
+      {
+        title: 'Willingness-to-Pay Experiment',
+        desc: 'Identified 295 churn-risk users from behavior analytics, offered targeted discounts. Converted 4 to annual plans. Zero immediate cancellations.'
+      },
+      {
+        title: 'Community Challenges (HackerRank-style)',
+        desc: 'Built challenge APIs, leaderboards, and XP systems. Ran BigQuery NTILE cohort segmentation to identify high-value engagement segments.'
+      },
+      {
+        title: 'SensAI — AI Hints & Code Explanations',
+        desc: 'Integrated GPT-4o (gpt-4o-2024-08-06) into the challenge flow with a UI → API → Python backend pipeline. Reduced challenge drop-offs.'
+      },
+      {
+        title: 'Cypress E2E Testing',
+        desc: 'Introduced end-to-end test coverage across critical flows. Significantly reduced regressions in a fast-shipping environment.'
+      }
+    ]
   },
   {
-    title: "Knapsack Algorithm Visualizer",
-    what: "Created a detailed visualization of the Knapsack algorithm for dynamic programming.",
-    how: "Designed a step-by-step animation to explain DP concepts interactively.",
-    impact: "Used in university classrooms, helping students grasp advanced dynamic programming concepts."
-  },
-  {
-    title: "Willingness-to-Pay Experiment",
-    what: "Ran a willingness-to-pay experiment targeting churn-risk users.",
-    how: "Offered discounted annual plans to churn-risk users based on behavior analytics.",
-    impact: "Converted ~1.36% (4/295) of churn-risk users to annual plans, improving customer lifetime value."
+    year: '2025',
+    theme: 'Visualizers & Ecosystem',
+    items: [
+      {
+        title: 'Code Visualization Platform',
+        desc: 'Built real-time Stack & Queue visualizers — Python execution tracing API (Node.js), playback controls, reusable animation architecture. MVP in under 2 months.'
+      },
+      {
+        title: 'Algorithm Visualizers (Knapsack & Coin Change)',
+        desc: 'Step-by-step DP visualizations used by US professors. Coin Change visualizer (sprites, animated storytelling) delivered in 3 working days.'
+      },
+      {
+        title: 'User Interviews & Discovery Cycles',
+        desc: 'Ran structured listening programs via Discord, email, and US professor outreach. Directly influenced roadmap decisions.'
+      },
+      {
+        title: 'Guided Projects Ecosystem (Co-Owner)',
+        desc: 'Co-designed and shipped the builder-first ecosystem: task-check infrastructure, project scaffolding, full platform rollout. Shifted users from passive learners to portfolio builders.'
+      },
+      {
+        title: 'Internal Hackathon',
+        desc: 'Organized company-wide hackathon end-to-end. 15+ participants across technical and non-technical teams.'
+      }
+    ]
   }
 ];
 
-function createAchievementCard(achievement) {
-  return `
-    <div class="achievement-card">
-      <h3 class="achievement-title">${achievement.title}</h3>
-      <div class="achievement-detail">
-        <span class="label">What</span>
-        <p>${achievement.what}</p>
+const achievements = [
+  {
+    statValue: '40+',
+    statLabel: 'institutions globally',
+    title: 'B2B Pro Teams',
+    what: 'Owned frontend for Programiz\'s B2B product — dashboards, team onboarding, assignments, reporting, settings over ~6 months.',
+    impact: 'Adopted by 40+ institutions globally including US-based bootcamps, universities, and training programs.'
+  },
+  {
+    statValue: 'Co-owned',
+    statLabel: 'full rollout',
+    title: 'Guided Projects Ecosystem',
+    what: 'Co-designed and built the builder-first ecosystem enabling learners to ship real, portfolio-ready projects instead of just completing courses.',
+    impact: 'Shifted the platform\'s value proposition from "lesson consumer" to "project builder" — shipped to every user on Programiz PRO.'
+  },
+  {
+    statValue: '<2mo',
+    statLabel: 'MVP shipped',
+    title: 'Code Visualization Platform',
+    what: 'Built real-time Stack & Queue visualizers with Python execution tracing, Node.js API, and playback controls. Established a reusable architecture for future visualizers.',
+    impact: 'Enabled playable learning experiences for beginners and career switchers. Multiple follow-on visualizers built on the same foundation.'
+  },
+  {
+    statValue: 'GPT-4o',
+    statLabel: 'integrated',
+    title: 'SensAI — AI Hints',
+    what: 'Designed and shipped an AI hint and code explanation system: React UI → web API → Python backend using gpt-4o-2024-08-06 and gpt-4o-mini.',
+    impact: 'Reduced challenge drop-offs and improved completion rates for learners stuck during problem-solving.'
+  },
+  {
+    statValue: 'BigQuery',
+    statLabel: 'cohort analysis',
+    title: 'Community Challenges',
+    what: 'Built HackerRank-style challenge infrastructure — APIs, UI, leaderboards, XP. Ran NTILE cohort segmentation in BigQuery to identify high-value user segments.',
+    impact: 'Established challenges as a new user acquisition channel with validated engagement and monetization data.'
+  },
+  {
+    statValue: '0',
+    statLabel: 'immediate cancellations',
+    title: 'WTP Experiment',
+    what: 'Identified 295 churn-risk users via behavior analytics. Offered targeted annual plan discounts as a save experiment.',
+    impact: 'Converted 4 users (~1.36%) to annual plans with zero immediate cancellations. Validated willingness-to-pay signal for future pricing experiments.'
+  },
+  {
+    statValue: '3 days',
+    statLabel: 'Coin Change delivered',
+    title: 'Algorithm Visualizers',
+    what: 'Built Knapsack (step-by-step DP state transitions) and Coin Change (sprite-based animated storytelling) visualizers.',
+    impact: 'Used by US professors in university classrooms. Coin Change makes advanced concepts accessible to learners under 16.'
+  },
+  {
+    statValue: '6K/mo',
+    statLabel: 'organic visits',
+    title: 'DataMentor Revamp',
+    what: '1-day sprint revamping the DataMentor homepage on a legacy Drupal codebase, alongside the CEO.',
+    impact: '~6K organic visits/month, 56% US traffic. Traffic value ~$1.1K/month. Strengthened SEO presence for R-language learning.'
+  }
+];
+
+const stack = {
+  'Frontend': ['React', 'TypeScript', 'JavaScript', 'Storybook'],
+  'Backend': ['Python', 'Node.js', 'REST APIs'],
+  'Data & Analytics': ['BigQuery', 'Product Analytics', 'Cohort Analysis'],
+  'AI': ['GPT-4o', 'Prompt Engineering'],
+  'Testing': ['Cypress', 'E2E Testing'],
+  'Platform': ['SaaS', 'Paddle', 'Drupal']
+};
+
+function renderStats() {
+  const grid = document.getElementById('stats-grid');
+  if (!grid) return;
+  grid.innerHTML = stats.map(s => `
+    <div class="stat-item">
+      <span class="stat-value">${s.value}</span>
+      <span class="stat-label">${s.label}</span>
+    </div>
+  `).join('');
+}
+
+function renderTimeline() {
+  const container = document.getElementById('timeline');
+  if (!container) return;
+  container.innerHTML = timeline.map(block => `
+    <div class="timeline-block reveal">
+      <div class="timeline-block-header">
+        <span class="timeline-year">${block.year}</span>
+        <span class="timeline-theme">${block.theme}</span>
+        <div class="timeline-rule"></div>
       </div>
-      <div class="achievement-detail">
-        <span class="label">How</span>
-        <p>${achievement.how}</p>
-      </div>
-      <div class="achievement-detail">
-        <span class="label">Impact</span>
-        <p>${achievement.impact}</p>
+      <div class="timeline-block-items">
+        ${block.items.map(item => `
+          <div class="timeline-item">
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+          </div>
+        `).join('')}
       </div>
     </div>
-  `;
+  `).join('');
 }
 
-function renderAchievements() {
-  const grid = document.getElementById('achievements-grid');
+function renderWins() {
+  const grid = document.getElementById('wins-grid');
   if (!grid) return;
-  
-  grid.innerHTML = achievements.map(createAchievementCard).join('');
+  grid.innerHTML = achievements.map(w => `
+    <div class="win-card reveal">
+      <div class="win-stat">
+        <span class="win-stat-value">${w.statValue}</span>
+        <span class="win-stat-label">${w.statLabel}</span>
+      </div>
+      <h3 class="win-title">${w.title}</h3>
+      <div class="win-what">
+        <span class="label">What</span>
+        <p>${w.what}</p>
+      </div>
+      <div class="win-impact">
+        <span class="label">Impact</span>
+        <p>${w.impact}</p>
+      </div>
+    </div>
+  `).join('');
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  renderAchievements();
-  
-  // Basic scroll reveal for cards
-  const observerOptions = {
-    threshold: 0.1
-  };
-  
+function renderStack() {
+  const grid = document.getElementById('stack-grid');
+  if (!grid) return;
+  grid.innerHTML = Object.entries(stack).map(([category, pills]) => `
+    <div class="stack-category reveal">
+      <span class="stack-cat-label">${category}</span>
+      <div class="stack-pills">
+        ${pills.map(p => `<span class="pill">${p}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function initMobileNav() {
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (!toggle || !navLinks) return;
+
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    toggle.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('active');
+    });
+  });
+}
+
+function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in');
-        observer.unobserve(entry.target);
+        const el = entry.target;
+        const siblings = Array.from(el.parentElement.children);
+        const index = siblings.indexOf(el);
+        el.style.transitionDelay = `${index * 80}ms`;
+        el.classList.add('visible');
+        observer.unobserve(el);
       }
     });
-  }, observerOptions);
-  
-  document.querySelectorAll('.achievement-card').forEach(card => {
-    card.style.opacity = '0';
-    observer.observe(card);
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.timeline-block, .win-card, .stack-category').forEach(el => {
+    observer.observe(el);
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderStats();
+  renderTimeline();
+  renderWins();
+  renderStack();
+  initMobileNav();
+  initScrollReveal();
 });
