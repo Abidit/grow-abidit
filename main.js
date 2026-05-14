@@ -12,7 +12,7 @@ const timeline = [
     items: [
       {
         title: 'Joined Programiz',
-        desc: 'Stepped into a live platform used by millions of learners — picked up the codebase and started shipping quickly.'
+        desc: 'Stepped into a live platform used by millions of learners.'
       },
       {
         title: 'SQL Editor Integration',
@@ -42,11 +42,11 @@ const timeline = [
       },
       {
         title: 'Sales & Payments Infrastructure (Paddle)',
-        desc: 'Built admin dashboards and campaign logic for Paddle plans, coupons, and sale events — enabling rapid revenue experiments.'
+        desc: 'Built admin dashboards and campaign logic for Paddle plans, coupons, and sale events — enabled rapid revenue experiments.'
       },
       {
         title: 'Storybook & Shared Components',
-        desc: 'Standardized UI with a shared component system and Storybook, cutting duplication and increasing dev velocity.'
+        desc: 'Standardized UI with a shared component system and Storybook — cut duplication, raised dev velocity.'
       }
     ]
   },
@@ -127,14 +127,14 @@ const achievements = [
     statLabel: 'integrated',
     title: 'SensAI — AI Hints',
     what: 'Designed and shipped an AI hint and code explanation system: React UI → web API → Python backend using gpt-4o-2024-08-06 and gpt-4o-mini.',
-    impact: 'Reduced challenge drop-offs and improved completion rates for learners stuck during problem-solving.'
+    impact: 'Reduced challenge drop-offs. Improved completion rates.'
   },
   {
     statValue: 'BigQuery',
     statLabel: 'cohort analysis',
     title: 'Community Challenges',
     what: 'Built HackerRank-style challenge infrastructure — APIs, UI, leaderboards, XP. Ran NTILE cohort segmentation in BigQuery to identify high-value user segments.',
-    impact: 'Established challenges as a new user acquisition channel with validated engagement and monetization data.'
+    impact: 'Established challenges as a new acquisition channel. Validated the engagement-to-monetization link with BigQuery.'
   },
   {
     statValue: '0',
@@ -156,6 +156,37 @@ const achievements = [
     title: 'DataMentor Revamp',
     what: '1-day sprint revamping the DataMentor homepage on a legacy Drupal codebase, alongside the CEO.',
     impact: '~6K organic visits/month, 56% US traffic. Traffic value ~$1.1K/month. Strengthened SEO presence for R-language learning.'
+  }
+];
+
+const projects = [
+  {
+    name: 'SpectaSnap',
+    desc: 'Browser-native AR glasses try-on for optical retailers. No app install — shoppers try frames via webcam, store owners get analytics and AI-powered style recommendations.',
+    tech: ['Next.js', 'MediaPipe', 'Three.js', 'Claude AI'],
+    url: 'https://spectasnap-orpin.vercel.app',
+    status: 'Live'
+  },
+  {
+    name: 'NomadWifi',
+    desc: 'Map-based platform to find and share WiFi spots. Filter by speed, noise level, and power availability.',
+    tech: ['Next.js', 'Supabase', 'Leaflet'],
+    url: 'https://nomadwifi.vercel.app',
+    status: 'Live'
+  },
+  {
+    name: 'Anatomly',
+    desc: 'Interactive 3D map of the human body. Explore organs, understand diseases, and see how medicines heal.',
+    tech: ['React', 'Three.js', 'GSAP'],
+    url: 'https://anatomly.vercel.app',
+    status: 'Live'
+  },
+  {
+    name: 'SpeedBlip',
+    desc: 'Real-time internet speed monitor for developers. Live download/upload/ping charts, threshold alerts, auto-scheduler. PWA.',
+    tech: ['React', 'Vite', 'Recharts'],
+    url: 'https://speedblip.netlify.app',
+    status: 'Live'
   }
 ];
 
@@ -223,6 +254,24 @@ function renderWins() {
   `).join('');
 }
 
+function renderProjects() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+  grid.innerHTML = projects.map(p => `
+    <a href="${p.url}" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-card-top">
+        <span class="project-status">${p.status}</span>
+        <svg class="project-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </div>
+      <h3 class="project-name">${p.name}</h3>
+      <p class="project-desc">${p.desc}</p>
+      <div class="project-tech">
+        ${p.tech.map(t => `<span class="pill">${t}</span>`).join('')}
+      </div>
+    </a>
+  `).join('');
+}
+
 function renderStack() {
   const grid = document.getElementById('stack-grid');
   if (!grid) return;
@@ -268,7 +317,7 @@ function initScrollReveal() {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.timeline-block, .win-card, .stack-category').forEach(el => {
+  document.querySelectorAll('.timeline-block, .win-card, .stack-category, .project-card').forEach(el => {
     observer.observe(el);
   });
 }
@@ -277,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderStats();
   renderTimeline();
   renderWins();
+  renderProjects();
   renderStack();
   initMobileNav();
   initScrollReveal();
