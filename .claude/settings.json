@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la *.pdf 2>/dev/null; echo \"---search for the AI CV anywhere---\"; find /mnt/code /home/abidit /tmp -maxdepth 4 -iname '*CV*AI*' -o -maxdepth 4 -iname '*Abidit_Shrestha_CV*' 2>/dev/null | head -20; echo \"---downloads---\"; ls -la ~/Downloads 2>/dev/null | grep -i pdf | head)",
+      "Read(//mnt/code/**)",
+      "Read(//home/abidit/Downloads/**)",
+      "Read(//mnt/code/eduship/**)",
+      "Bash(cp /home/abidit/Downloads/Abidit_Shrestha_CV_AI_LLM_v2.pdf /mnt/code/grow-abidit/abidit-cv-ai-llm.pdf && ls -la /mnt/code/grow-abidit/*.pdf)"
+    ],
+    "additionalDirectories": [
+      "/home/abidit/Downloads"
+    ]
+  }
+}
