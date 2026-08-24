@@ -239,7 +239,8 @@ function renderStats() {
 function renderTimeline() {
   const container = document.getElementById("timeline");
   if (!container) return;
-  container.innerHTML = timeline
+  const trackHtml = `<div class="timeline-track"><div class="timeline-track-fill" id="timeline-fill"></div></div>`;
+  const blocksHtml = timeline
     .map(
       (block) => `
     <div class="timeline-block reveal">
@@ -264,6 +265,7 @@ function renderTimeline() {
   `,
     )
     .join("");
+  container.innerHTML = trackHtml + blocksHtml;
 }
 
 function renderWins() {
@@ -349,6 +351,47 @@ function initMobileNav() {
   });
 }
 
+function initTimelineSpine() {
+  const container = document.getElementById("timeline");
+  const fill = document.getElementById("timeline-fill");
+  if (!container || !fill) return;
+
+  let ticking = false;
+  function updateFill() {
+    const rect = container.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = rect.height + vh;
+    const scrolled = Math.min(Math.max(vh - rect.top, 0), total);
+    const progress = total > 0 ? scrolled / total : 0;
+    fill.style.height = `${progress * 100}%`;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(updateFill);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+
+  updateFill();
+
+  const years = document.querySelectorAll(".timeline-year");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("active", entry.isIntersecting);
+      });
+    },
+    { rootMargin: "-40% 0px -50% 0px" },
+  );
+  years.forEach((year) => observer.observe(year));
+}
+
 function initScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -383,4 +426,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderStack();
   initMobileNav();
   initScrollReveal();
+  initTimelineSpine();
 });
