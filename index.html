@@ -1,162 +1,348 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abidit Shrestha | Senior Software Engineer</title>
-  <meta name="description" content="Senior Software Engineer with 4+ years at Programiz. Open to remote senior frontend, full stack, and backend roles. React, TypeScript, Python, Node.js, Next.js. Nepal (UTC+5:45).">
-  <meta property="og:title" content="Abidit Shrestha | Senior Software Engineer">
-  <meta property="og:description" content="4 years shipping at Programiz — B2B platforms at 40+ institutions, GPT-4o integrations, DSA visualizers. Open to remote senior frontend, full stack, and backend roles.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://abidit.github.io/grow-abidit/">
-  <meta name="keywords" content="Senior Frontend Engineer, Senior Full Stack Engineer, Backend Engineer, React, TypeScript, Python, Node.js, Next.js, Remote, Nepal">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
-  <nav class="navbar">
-    <div class="container navbar-content">
-      <a href="#home" class="logo">AS<span>.</span></a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#wins">Wins</a></li>
-        <li><a href="#projects">Building</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-
-  <header id="home" class="hero">
-    <div class="container hero-content">
-      <p class="hero-eyebrow fade-in">Programiz · Jan 2022 — May 2026</p>
-      <h1 class="fade-in delay-1">Abidit Shrestha</h1>
-      <h2 class="fade-in delay-2">Senior Software Engineer</h2>
-      <div class="hero-availability fade-in delay-3">
-        <span class="open-badge"><span class="open-dot"></span>Open to work</span>
-        <span class="role-targets">Senior Frontend · Full Stack · Backend · Remote · Nepal (UTC+5:45)</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abidit Shrestha | Senior Software Engineer</title>
+    <meta
+      name="description"
+      content="Senior Software Engineer with 4.5+ years at Programiz. Building AI/agent infrastructure (MCP servers, security proxies) and shipping products solo. Open to remote senior full-stack and backend roles. Nepal (UTC+5:45)."
+    />
+    <meta
+      property="og:title"
+      content="Abidit Shrestha | Senior Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="4.5 years at Programiz — a B2B platform live in 40+ institutions, a GPT-4o hint system serving 1.5M+ learners. Now building AI/agent infrastructure and shipping products solo."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abidit.github.io/grow-abidit/" />
+    <meta
+      name="keywords"
+      content="Senior Frontend Engineer, Senior Full Stack Engineer, AI Agent Engineer, MCP, React, TypeScript, Python, Node.js, Next.js, Remote, Nepal"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-content">
+        <a href="#home" class="logo">AS<span>.dev</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#building">Building</a></li>
+          <li><a href="#how-i-work">Process</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle color theme"
+          >
+            ☾
+          </button>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
-      <p class="hero-desc fade-in delay-4">4 years shipping at Programiz — B2B platform at 40+ institutions, GPT-4o integrations, DSA visualizers used in US classrooms. Chapter closed. Building my own products now.</p>
-      <div class="hero-actions fade-in delay-5">
-        <a href="#work" class="btn btn-primary">See the work</a>
-        <a href="./abidit-cv-ai-llm.pdf" download="Abidit-Shrestha-CV.pdf" class="btn btn-outline">Download CV</a>
-        <div class="social-links">
-          <a href="https://github.com/Abidit" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+    </nav>
+
+    <header id="home" class="hero">
+      <div class="hero-decor" aria-hidden="true">
+        <span class="decor-diamond"></span>
+        <span class="decor-ring"></span>
+        <span class="decor-dot"></span>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="eyebrow-badge fade-in">
+              <span class="pulse-dot"></span>
+              <span
+                >Open to work &middot; Full-Stack + AI/Agent Engineer &middot;
+                Remote / Nepal</span
+              >
+            </div>
+            <h1 class="fade-in delay-1">Abidit Shrestha</h1>
+            <p class="hero-subhead fade-in delay-2">
+              Senior Software Engineer > I find the problem, then ship the fix.
+            </p>
+            <p class="hero-desc fade-in delay-3">
+              4.5 years at Programiz, an EdTech startup: a B2B platform live in
+              40+ institutions, a GPT-4o hint system serving 1.5M+ learners,
+              and, most recently, a multi-agent curriculum orchestrator that's
+              still evolving. Now building AI/agent infrastructure (MCP servers,
+              security proxies) and shipping products solo.
+            </p>
+            <div class="hero-cta-row fade-in delay-4">
+              <a href="#contact" class="btn btn-primary">Let's talk</a>
+              <a href="#work" class="btn btn-outline">See the work</a>
+              <a
+                href="./abidit-cv-ai-llm.pdf"
+                download="Abidit-Shrestha-CV.pdf"
+                class="btn btn-outline"
+                >Download CV</a
+              >
+            </div>
+            <div class="social-links fade-in delay-5">
+              <a
+                href="https://github.com/Abidit"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abidit-shrestha-ba6707206/"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="hero-robot" id="hero-robot" aria-hidden="true"></div>
+        </div>
+        <div id="stats-grid" class="stats-grid"></div>
+      </div>
+    </header>
+
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-eyebrow">
+          <span class="pulse-dot"></span><span>// CASE_LOG</span>
+        </div>
+        <h2 class="section-title">4 problems, solved.</h2>
+        <div id="cases-grid" class="cases-grid"></div>
+      </div>
+    </section>
+
+    <section id="building" class="section">
+      <div class="container">
+        <div class="section-eyebrow">
+          <span class="pulse-dot"></span><span>// BUILDING</span>
+        </div>
+        <h2 class="section-title">Currently shipping.</h2>
+        <div class="build-group-label">AI_AGENT_INFRASTRUCTURE</div>
+        <div id="infra-grid" class="build-grid"></div>
+        <div class="build-group-label build-group-label-spaced">PRODUCTS</div>
+        <div id="products-grid" class="build-grid"></div>
+      </div>
+    </section>
+
+    <section id="how-i-work" class="section">
+      <div class="container">
+        <div class="section-eyebrow">
+          <span class="pulse-dot"></span><span>// HOW_I_WORK</span>
+        </div>
+        <h2 class="section-title">Process, not vibes.</h2>
+        <div id="steps-grid" class="steps-grid"></div>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container stack-credibility-grid">
+        <div class="stack-col">
+          <div class="section-eyebrow">
+            <span class="pulse-dot"></span><span>// STACK</span>
+          </div>
+          <h2 class="section-title">What I actually build with.</h2>
+          <div id="stack-groups" class="stack-groups"></div>
+        </div>
+        <div class="credibility-col">
+          <div class="section-eyebrow">
+            <span class="pulse-dot"></span><span>// CREDIBILITY</span>
+          </div>
+          <h2 class="section-title">
+            Published, tested, and reviewed, not just claimed.
+          </h2>
+          <div class="cred-big-stat">
+            <span class="cred-big-num">4</span>
+            <span class="cred-big-label"
+              >published packages<br />(npm + PyPI)</span
+            >
+          </div>
+          <div id="cred-badges" class="cred-badges"></div>
+          <div class="cred-lines">
+            <a
+              href="https://github.com/facebook/astryx"
+              target="_blank"
+              rel="noopener"
+              class="cred-line"
+            >
+              <span
+                >Reviewed, merged PR to Meta's facebook/astryx, CLA signed, WCAG
+                AA accessibility fix</span
+              >
+              <span class="cred-arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="cred-line-static">
+              First MCP servers for Nepal's two dominant payment gateways
+              (eSewa, Khalti)
+            </div>
+          </div>
+          <a
+            href="https://github.com/Abidit"
+            target="_blank"
+            rel="noopener"
+            class="cred-full-link"
+            >Full project history, licenses, and documentation &rarr;
+            github.com/Abidit</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="footer">
+      <div class="footer-decor" aria-hidden="true">
+        <span class="decor-diamond decor-diamond-sm"></span>
+        <span class="decor-dot"></span>
+      </div>
+      <div class="container contact-content">
+        <h2 class="contact-title">Let's talk.</h2>
+        <p class="contact-sub">
+          Open to senior full-stack, frontend, and backend roles. Remote. Nepal
+          (UTC+5:45).
+        </p>
+        <a href="mailto:abistha01@gmail.com" class="btn btn-primary contact-cta"
+          >Let's talk</a
+        >
+        <div class="social-links contact-social">
+          <a href="mailto:abistha01@gmail.com" aria-label="Email">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M2 4h20v16H2V4Z"></path>
+              <path d="m2 5 10 8 10-8"></path>
+            </svg>
           </a>
-          <a href="https://www.linkedin.com/in/abidit-shrestha-ba6707206/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <a
+            href="https://github.com/Abidit"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abidit-shrestha-ba6707206/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
           </a>
         </div>
       </div>
-      <div class="hero-character" aria-hidden="true">
-        <!-- pixel art character using SVG rects on a 12x20 grid, each cell = 8px -->
-        <svg width="96" height="160" viewBox="0 0 96 160" xmlns="http://www.w3.org/2000/svg" class="pixel-char">
-          <!-- Head: cols 3-8 (24-64px), rows 0-4 (0-32px) -->
-          <rect x="24" y="0"  width="48" height="8"  fill="#52B788"/>
-          <rect x="16" y="8"  width="64" height="8"  fill="#52B788"/>
-          <rect x="16" y="16" width="64" height="8"  fill="#52B788"/>
-          <rect x="16" y="24" width="64" height="8"  fill="#52B788"/>
-          <rect x="24" y="32" width="48" height="8"  fill="#52B788"/>
-          <!-- Eyes -->
-          <rect x="24" y="16" width="8"  height="8"  fill="#0D1117"/>
-          <rect x="56" y="16" width="8"  height="8"  fill="#0D1117"/>
-          <!-- Mouth (smile) -->
-          <rect x="32" y="28" width="8"  height="4"  fill="#0D1117"/>
-          <rect x="48" y="28" width="8"  height="4"  fill="#0D1117"/>
-          <rect x="40" y="32" width="8"  height="4"  fill="#0D1117"/>
-          <!-- Body: cols 2-9 (16-72px), rows 5-10 (40-80px) -->
-          <rect x="16" y="40" width="64" height="8"  fill="#3D9970"/>
-          <rect x="16" y="48" width="64" height="8"  fill="#3D9970"/>
-          <rect x="16" y="56" width="64" height="8"  fill="#3D9970"/>
-          <rect x="16" y="64" width="64" height="8"  fill="#3D9970"/>
-          <rect x="16" y="72" width="64" height="8"  fill="#3D9970"/>
-          <!-- Left arm (static) -->
-          <rect x="0"  y="40" width="16" height="8"  fill="#52B788"/>
-          <rect x="0"  y="48" width="8"  height="8"  fill="#52B788"/>
-          <!-- Right arm (waving) — wrapped in a group with transform origin at shoulder -->
-          <g class="wave-arm">
-            <rect x="80" y="40" width="16" height="8"  fill="#52B788"/>
-            <rect x="88" y="32" width="8"  height="8"  fill="#52B788"/>
-            <rect x="88" y="24" width="8"  height="8"  fill="#52B788"/>
-          </g>
-          <!-- Legs -->
-          <rect x="24" y="80" width="24" height="8"  fill="#3D9970"/>
-          <rect x="24" y="88" width="24" height="8"  fill="#3D9970"/>
-          <rect x="24" y="96" width="24" height="8"  fill="#3D9970"/>
-          <rect x="16" y="104" width="24" height="8" fill="#52B788"/>
-          <rect x="16" y="112" width="24" height="8" fill="#52B788"/>
-          <rect x="48" y="80" width="24" height="8"  fill="#3D9970"/>
-          <rect x="48" y="88" width="24" height="8"  fill="#3D9970"/>
-          <rect x="48" y="96" width="24" height="8"  fill="#3D9970"/>
-          <rect x="56" y="104" width="24" height="8" fill="#52B788"/>
-          <rect x="56" y="112" width="24" height="8" fill="#52B788"/>
-        </svg>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <span class="footer-logo">AS<span>.dev</span></span>
+          <span class="footer-sysarch">// SYS_ARCH.V4</span>
+          <div class="footer-links">
+            <a href="https://github.com/Abidit" target="_blank" rel="noopener"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/abidit-shrestha-ba6707206/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </div>
+          <span class="footer-copyright"
+            >&copy; 2026 Abidit Shrestha. Engineered with precision &amp;
+            performance.</span
+          >
+        </div>
       </div>
-    </div>
-  </header>
+    </footer>
 
-  <section class="stats">
-    <div class="container">
-      <div id="stats-grid" class="stats-grid"></div>
-    </div>
-  </section>
-
-  <section id="work" class="work">
-    <div class="container">
-      <h2 class="section-title">4 Years at Programiz</h2>
-      <div id="timeline" class="timeline"></div>
-    </div>
-  </section>
-
-  <section id="wins" class="wins">
-    <div class="container">
-      <h2 class="section-title">Key Wins</h2>
-      <div id="wins-grid" class="wins-grid"></div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title">Building</h2>
-      <div id="projects-grid" class="projects-grid"></div>
-    </div>
-  </section>
-
-  <section id="stack" class="stack-section">
-    <div class="container">
-      <h2 class="section-title">Stack</h2>
-      <div id="stack-grid" class="stack-grid"></div>
-    </div>
-  </section>
-
-  <footer id="contact" class="footer">
-    <div class="container footer-content">
-      <h2 class="section-title">Get In Touch</h2>
-      <p class="footer-sub">Open to senior frontend, full stack, and backend roles. Remote. Nepal (UTC+5:45).</p>
-      <div class="contact-methods">
-        <a href="mailto:abistha01@gmail.com" class="contact-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          abistha01@gmail.com
-        </a>
-        <span class="contact-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          +977 9860601754
-        </span>
-      </div>
-      <p class="copyright">&copy; 2026 Abidit Shrestha</p>
-    </div>
-  </footer>
-
-  <script src="./main.js"></script>
-</body>
+    <script src="./main.js"></script>
+  </body>
 </html>
