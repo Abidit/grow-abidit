@@ -67,6 +67,7 @@ const infra = [
       "Browser extension that catches sensitive data before it leaks into AI chat prompts.",
     tags: ["TypeScript", "Browser Extension", "Security"],
     href: "https://sequirly.com",
+    goatcounterClick: "project-click-sequirly",
   },
   {
     name: "manifest-mcp",
@@ -75,6 +76,7 @@ const infra = [
       "GitHub App that reviews MCP config changes in PRs against a 12-rule risk engine.",
     tags: ["TypeScript", "Probot", "GitHub Actions"],
     href: "https://github.com/Abidit/manifest-mcp",
+    goatcounterClick: "project-click-manifest-mcp",
   },
   {
     name: "phi-guard-mcp",
@@ -83,6 +85,7 @@ const infra = [
       "Local-first MCP server that catches PHI in LLM prompts, logs, and analytics calls before it ships.",
     tags: ["TypeScript", "MCP", "HIPAA"],
     href: "https://npmjs.com/package/phi-guard-mcp",
+    goatcounterClick: "project-click-phi-guard-mcp",
   },
   {
     name: "eSewa & Khalti MCP",
@@ -91,6 +94,7 @@ const infra = [
       "Nepal's first MCP servers for its two dominant payment gateways, HMAC-SHA256 signed.",
     tags: ["TypeScript", "MCP", "Fintech"],
     href: "https://npmjs.com/package/esewa-mcp",
+    goatcounterClick: "project-click-esewa-khalti-mcp",
   },
   {
     name: "DataHub Navigator",
@@ -99,6 +103,7 @@ const infra = [
       "Conversational, animated data-lineage explorer with a deterministic no-LLM traversal engine.",
     tags: ["Next.js", "React", "MCP"],
     href: "https://datahub-navigator.vercel.app",
+    goatcounterClick: "project-click-datahub-navigator",
   },
 ];
 
@@ -110,6 +115,7 @@ const products = [
       "Production-ready Next.js boilerplate for EdTech platforms — auth, courses, quizzes, payments.",
     tags: ["Next.js 16", "Clerk", "Supabase"],
     href: "https://eduship.dev",
+    goatcounterClick: "project-click-eduship",
   },
   {
     name: "SpectaSnap",
@@ -118,15 +124,17 @@ const products = [
       "Browser-native AR glasses try-on for optical retailers, webcam-based, no app install.",
     tags: ["Next.js", "MediaPipe", "Claude AI"],
     href: "https://spectasnap-orpin.vercel.app",
+    goatcounterClick: "project-click-spectasnap",
   },
-  {
-    name: "NomadWifi",
-    status: "Live Demo",
-    description:
-      "Map-based platform to find and share WiFi spots by speed, noise, and power.",
-    tags: ["Next.js", "Supabase", "Leaflet"],
-    href: "https://nomadwifi.vercel.app",
-  },
+  // {
+  //   name: "NomadWifi",
+  //   status: "Live Demo",
+  //   description:
+  //     "Map-based platform to find and share WiFi spots by speed, noise, and power.",
+  //   tags: ["Next.js", "Supabase", "Leaflet"],
+  //   href: "https://nomadwifi.vercel.app",
+  //   goatcounterClick: "project-click-nomadwifi",
+  // },
   {
     name: "Anatomly",
     status: "Live Demo · Early Build",
@@ -134,6 +142,7 @@ const products = [
       "Interactive 3D map of the human body — explore organs and disease pathways.",
     tags: ["React", "Three.js", "GSAP"],
     href: "https://anatomly.vercel.app",
+    goatcounterClick: "project-click-anatomly",
   },
   {
     name: "SpeedBlip",
@@ -142,6 +151,7 @@ const products = [
       "Real-time internet speed monitor with live charts and threshold alerts.",
     tags: ["React", "Vite", "Recharts"],
     href: "https://speedblip.netlify.app",
+    goatcounterClick: "project-click-speedblip",
   },
 ];
 
@@ -279,7 +289,7 @@ function renderBuildGroup(containerId, items) {
   grid.innerHTML = items
     .map(
       (item) => `
-    <a href="${item.href}" target="_blank" rel="noopener" class="build-card reveal${item.filled ? " build-card-filled" : ""}">
+    <a href="${item.href}" target="_blank" rel="noopener" class="build-card reveal${item.filled ? " build-card-filled" : ""}" data-goatcounter-click="${item.goatcounterClick}">
       <div class="build-card-top">
         <span class="build-name">${item.name}</span>
         <span class="badge ${statusClass(item.status)}">${item.status}</span>
@@ -433,6 +443,38 @@ function initScrollReveal() {
     });
 }
 
+function initScrollDepthTracking() {
+  const sections = [
+    { id: "work", path: "case-studies" },
+    { id: "building", path: "building" },
+    { id: "how-i-work", path: "how-i-work" },
+    { id: "stack", path: "stack" },
+    { id: "contact", path: "contact" },
+  ];
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const path = entry.target.dataset.scrollDepthPath;
+        window.goatcounter?.count?.({
+          path: `scroll-depth/${path}`,
+          event: true,
+        });
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.1 },
+  );
+
+  sections.forEach(({ id, path }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.dataset.scrollDepthPath = path;
+    observer.observe(el);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderStats();
   renderCases();
@@ -444,4 +486,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   initAccordions();
   initScrollReveal();
+  initScrollDepthTracking();
+  // count.js binds data-goatcounter-click listeners to elements present at
+  // script-load time only; the project cards above are injected after that,
+  // so re-bind explicitly (no-ops safely if count.js hasn't loaded yet — its
+  // own on_load bind then covers these elements instead).
+  window.goatcounter?.bind_events?.();
 });

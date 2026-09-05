@@ -1125,6 +1125,19 @@ a {
   color: var(--text-dim);
 }
 
+/* ─── Analytics ────────────────────────────────── */
+
+.analytics-section {
+  padding-top: 72px;
+}
+
+.analytics-frame {
+  border: 1.5px solid var(--border-soft);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
 /* ─── Responsive: 900px (desktop) ─────────────── */
 
 @media (min-width: 900px) {
