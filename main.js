@@ -5,23 +5,6 @@ const stats = [
   { value: "6K/mo", label: "organic traffic driven" },
 ];
 
-const robotRows = [
-  "0000110000",
-  "0000110000",
-  "0001111000",
-  "0111111110",
-  "1111111111",
-  "1111001111",
-  "1111001111",
-  "1111111111",
-  "0111111110",
-  "0011111100",
-  "0111111110",
-  "1111111111",
-  "1100000011",
-  "1100000011",
-];
-
 const cases = [
   {
     id: "CASE_001",
@@ -234,15 +217,6 @@ function renderStats() {
     </div>
   `,
     )
-    .join("");
-}
-
-function renderRobot() {
-  const el = document.getElementById("hero-robot");
-  if (!el) return;
-  el.innerHTML = robotRows
-    .flatMap((row) => row.split(""))
-    .map((ch) => `<span class="robot-cell${ch === "1" ? " on" : ""}"></span>`)
     .join("");
 }
 
@@ -461,7 +435,6 @@ function initScrollReveal() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderStats();
-  renderRobot();
   renderCases();
   renderBuilding();
   renderSteps();

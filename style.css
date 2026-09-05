@@ -46,12 +46,14 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 a {
@@ -66,13 +68,22 @@ a {
 }
 
 @keyframes floatY {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .pulse-dot {
@@ -106,7 +117,7 @@ a {
 }
 
 .logo {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text);
@@ -125,7 +136,7 @@ a {
 }
 
 .nav-links a {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   color: var(--text-dim);
   font-weight: 500;
   font-size: 0.85rem;
@@ -271,7 +282,7 @@ a {
 }
 
 .hero h1 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: clamp(2.75rem, 6vw, 4rem);
   line-height: 1.02;
@@ -281,7 +292,7 @@ a {
 }
 
 .hero-subhead {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 500;
   font-size: clamp(1.15rem, 2.4vw, 1.5rem);
   line-height: 1.3;
@@ -308,7 +319,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   text-decoration: none;
   transition: var(--transition);
@@ -369,23 +380,38 @@ a {
   transform: translateY(-3px);
 }
 
-/* ─── Robot mascot ───────────────────────────── */
+/* ─── Hero illustration ───────────────────────── */
 
-.hero-robot {
-  display: grid;
-  grid-template-columns: repeat(10, 7px);
-  grid-template-rows: repeat(14, 7px);
-  gap: 1px;
+.hero-illustration {
+  display: flex;
   justify-content: center;
+}
+
+.hero-illustration-frame {
+  width: 240px;
+  aspect-ratio: 480 / 411;
+  outline: 2px solid var(--lime);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-bg);
   animation: floatY 5s ease-in-out infinite;
 }
 
-.robot-cell {
-  background: transparent;
+[data-theme="dark"] .hero-illustration-frame {
+  border-color: var(--border-soft);
 }
 
-.robot-cell.on {
-  background: var(--lime);
+.hero-illustration-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-illustration-frame {
+    animation: none;
+  }
 }
 
 /* ─── Fade-in animations ─────────────────────── */
@@ -396,11 +422,21 @@ a {
   animation: fadeUp 0.7s ease forwards;
 }
 
-.delay-1 { animation-delay: 0.15s; }
-.delay-2 { animation-delay: 0.3s; }
-.delay-3 { animation-delay: 0.45s; }
-.delay-4 { animation-delay: 0.6s; }
-.delay-5 { animation-delay: 0.75s; }
+.delay-1 {
+  animation-delay: 0.15s;
+}
+.delay-2 {
+  animation-delay: 0.3s;
+}
+.delay-3 {
+  animation-delay: 0.45s;
+}
+.delay-4 {
+  animation-delay: 0.6s;
+}
+.delay-5 {
+  animation-delay: 0.75s;
+}
 
 @keyframes fadeUp {
   to {
@@ -414,7 +450,9 @@ a {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .reveal.visible {
@@ -434,7 +472,7 @@ a {
 
 .stat-value {
   display: block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: clamp(1.5rem, 3vw, 2rem);
   color: var(--lime);
@@ -463,7 +501,7 @@ a {
 }
 
 .section-eyebrow span:last-child {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--lime);
@@ -471,7 +509,7 @@ a {
 }
 
 .section-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: clamp(1.6rem, 3.5vw, 2.125rem);
   margin-bottom: 1.75rem;
@@ -495,7 +533,7 @@ a {
 }
 
 .chevron {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 16px;
   color: var(--lime);
   flex-shrink: 0;
@@ -509,7 +547,7 @@ a {
 
 .field-label {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--lime);
@@ -556,7 +594,7 @@ a {
 }
 
 .case-id {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.75rem;
   color: var(--lime);
   white-space: nowrap;
@@ -565,7 +603,7 @@ a {
 }
 
 .case-impact {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   color: var(--text-dim);
 }
@@ -607,7 +645,7 @@ a {
 /* ─── Building ───────────────────────────────── */
 
 .build-group-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -650,13 +688,13 @@ a {
 }
 
 .build-name {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1rem;
 }
 
 .badge {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -760,7 +798,7 @@ a {
 /* ─── Pills ──────────────────────────────────── */
 
 .pill {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   display: inline-block;
   font-size: 0.7rem;
   color: var(--text-dim);
@@ -770,7 +808,7 @@ a {
 }
 
 .pill-outline {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text);
@@ -809,7 +847,7 @@ a {
 }
 
 .step-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--lime);
@@ -826,7 +864,7 @@ a {
 }
 
 .step-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.3;
@@ -853,7 +891,7 @@ a {
 }
 
 .step-evidence {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   color: var(--text-dim);
   text-decoration: underline;
@@ -876,7 +914,7 @@ a {
 
 .stack-group-label {
   display: block;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -906,7 +944,7 @@ a {
 }
 
 .cred-big-num {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 3.5rem;
   line-height: 1;
@@ -929,7 +967,7 @@ a {
 .cred-badge {
   display: inline-flex;
   align-items: center;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   font-weight: 600;
   padding: 6px 10px;
@@ -1015,7 +1053,7 @@ a {
 }
 
 .contact-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 2.75rem);
   line-height: 1.05;
@@ -1050,7 +1088,7 @@ a {
 }
 
 .footer-logo {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
@@ -1061,7 +1099,7 @@ a {
 }
 
 .footer-sysarch {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.65rem;
   color: var(--text-dim);
   letter-spacing: 0.04em;
@@ -1094,9 +1132,8 @@ a {
     grid-template-columns: 1fr auto;
   }
 
-  .hero-robot {
-    grid-template-columns: repeat(10, 8px);
-    grid-template-rows: repeat(14, 8px);
+  .hero-illustration-frame {
+    width: 300px;
   }
 
   .stats-grid {

@@ -28,6 +28,24 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/apple-touch-icon.png"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -81,7 +99,8 @@
             </div>
             <h1 class="fade-in delay-1">Abidit Shrestha</h1>
             <p class="hero-subhead fade-in delay-2">
-              Senior Software Engineer > I find the problem, then ship the fix.
+              Senior Software Engineer <br />
+              I find the problem, then ship the fix.
             </p>
             <p class="hero-desc fade-in delay-3">
               4.5 years at Programiz, an EdTech startup: a B2B platform live in
@@ -149,7 +168,23 @@
               </a>
             </div>
           </div>
-          <div class="hero-robot" id="hero-robot" aria-hidden="true"></div>
+          <div class="hero-illustration">
+            <div class="hero-illustration-frame">
+              <picture>
+                <source
+                  srcset="./assets/hero-illustration-static.webp"
+                  media="(prefers-reduced-motion: reduce)"
+                />
+                <img
+                  src="./assets/hero-illustration.webp"
+                  width="480"
+                  height="411"
+                  alt="Pixel art illustration of a developer coding at a desk."
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
         </div>
         <div id="stats-grid" class="stats-grid"></div>
       </div>
