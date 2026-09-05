@@ -1157,14 +1157,6 @@ a {
   min-height: 120px;
 }
 
-.form-honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
 .contact-submit {
   width: 100%;
 }

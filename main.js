@@ -215,12 +215,8 @@ const stackGroups = [
 
 const credBadges = ["esewa-mcp", "khalti-mcp", "phi-guard-mcp", "abitree"];
 
-// TODO: replace with your deployed Google Apps Script Web App URL (see
-// contact-form-claude-code-prompt.md) — the form falls back to the "email
-// me directly" error state until this is a real endpoint.
-const CONTACT_SCRIPT_URL = "1pis93OZBOPYFsz_JTQD2KRvjycRexb_ZWiZMtSzAjfM";
-const CONTACT_THROTTLE_MS = 60 * 1000;
-const CONTACT_THROTTLE_KEY = "contactFormLastSent";
+// TODO: replace YOUR_FORM_ID with the real Formspree form id.
+const CONTACT_ENDPOINT = "https://formspree.io/f/xyeyprdb";
 
 function renderStats() {
   const grid = document.getElementById("stats-grid");
@@ -382,11 +378,6 @@ function initContactForm() {
 
   const submitLabel = submitBtn.textContent;
 
-  function timeSinceLastSend() {
-    const last = Number(localStorage.getItem(CONTACT_THROTTLE_KEY) || 0);
-    return Date.now() - last;
-  }
-
   function showResult(icon, message) {
     form.hidden = true;
     result.innerHTML = `
@@ -396,49 +387,33 @@ function initContactForm() {
     result.hidden = false;
   }
 
-  const throttleMessage =
-    "You just sent a message — give it a moment before sending another.";
   const successMessage = "Message sent — I'll get back to you soon.";
-  const rateLimitedMessage =
-    'Too many messages right now — please try again in a minute, or email me directly at <a href="mailto:abistha01@gmail.com">abistha01@gmail.com</a>.';
   const errorMessage =
     'Something went wrong — please email me directly at <a href="mailto:abistha01@gmail.com">abistha01@gmail.com</a>.';
-
-  if (timeSinceLastSend() < CONTACT_THROTTLE_MS) {
-    showResult("✓", throttleMessage);
-  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (timeSinceLastSend() < CONTACT_THROTTLE_MS) {
-      showResult("✓", throttleMessage);
-      return;
-    }
-
     const name = form.elements.name.value.trim();
     const email = form.elements.email.value.trim();
     const message = form.elements.message.value.trim();
-    const website = form.elements.website.value;
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending...";
 
     try {
-      const res = await fetch(CONTACT_SCRIPT_URL, {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        // text/plain avoids a CORS preflight — Apps Script web apps don't
-        // handle OPTIONS, so application/json would fail cross-origin.
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ name, email, message, website }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
       });
       const data = await res.json();
 
-      if (data.success) {
-        localStorage.setItem(CONTACT_THROTTLE_KEY, String(Date.now()));
+      if (data.ok === true) {
         showResult("✓", successMessage);
-      } else if (data.error === "rate_limited") {
-        showResult("!", rateLimitedMessage);
       } else {
         showResult("!", errorMessage);
       }
