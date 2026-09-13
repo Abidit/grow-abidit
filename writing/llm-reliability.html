@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      How We Kept an LLM Feature Reliable at 1.5M-Learner Scale | Abidit
+      Shrestha
+    </title>
+    <meta
+      name="description"
+      content="Five things that broke building SensAI, Programiz's GPT-4o hint system for 1.5M+ learners, and what fixed them."
+    />
+    <meta
+      property="og:title"
+      content="How We Kept an LLM Feature Reliable at 1.5M-Learner Scale"
+    />
+    <meta
+      property="og:description"
+      content="Five things that broke building SensAI, Programiz's GPT-4o hint system for 1.5M+ learners, and what fixed them."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://abidit.github.io/grow-abidit/writing/llm-reliability.html"
+    />
+    <meta
+      property="og:image"
+      content="https://abidit.github.io/grow-abidit/social-card.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="How We Kept an LLM Feature Reliable at 1.5M-Learner Scale"
+    />
+    <meta
+      name="twitter:description"
+      content="Five things that broke building SensAI, Programiz's GPT-4o hint system for 1.5M+ learners, and what fixed them."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/apple-touch-icon.png"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      /* ─── Article (long-form reading type, layered on the site's tokens) ─── */
+
+      .article-shell {
+        padding-top: 72px;
+      }
+
+      .article {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 6rem;
+        font-family: "IBM Plex Serif", Georgia, serif;
+        font-size: 1.125rem;
+        line-height: 1.75;
+        color: var(--text);
+        --lesson-bg: oklch(0.62 0.19 130 / 0.1);
+      }
+
+      [data-theme="dark"] .article {
+        --lesson-bg: oklch(0.78 0.2 130 / 0.12);
+      }
+
+      .article .byline {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text-dim);
+        letter-spacing: 0.04em;
+        margin-bottom: 1.25rem;
+      }
+
+      .article header {
+        border-top: 3px solid var(--text);
+        padding-top: 2rem;
+        margin-bottom: 3.5rem;
+      }
+
+      .article h1 {
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.25;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+
+      .article .subtitle {
+        font-size: 1rem;
+        color: var(--text-dim);
+        font-style: italic;
+        border-left: 2px solid var(--border-soft);
+        padding-left: 1rem;
+        margin-top: 1rem;
+      }
+
+      .article .intro {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .article .intro p {
+        margin-top: 1.25rem;
+      }
+
+      .article .intro p:first-child {
+        margin-top: 0;
+      }
+
+      .article section {
+        margin-bottom: 3rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .article section:last-of-type {
+        border-bottom: none;
+      }
+
+      .article .section-number {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--lime);
+        letter-spacing: 0.08em;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .article h2 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: 1.25rem;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+
+      .article p {
+        margin-bottom: 1.25rem;
+        color: var(--text);
+      }
+
+      .article p:last-child {
+        margin-bottom: 0;
+      }
+
+      .article .lesson {
+        background: var(--lesson-bg);
+        border-left: 3px solid var(--lime);
+        border-radius: 0 8px 8px 0;
+        padding: 1rem 1.25rem;
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+        font-style: italic;
+        color: var(--text);
+      }
+
+      .article .closing {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 3px solid var(--text);
+        font-size: 0.95rem;
+        color: var(--text-dim);
+        font-style: italic;
+      }
+
+      .article .closing-cta {
+        margin-top: 1.5rem;
+        font-style: normal;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+      }
+
+      .article .closing-cta a {
+        color: var(--lime);
+        border-bottom: 1.5px solid var(--lime);
+        padding-bottom: 1px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        .article {
+          font-size: 1rem;
+          padding: 2rem 1.25rem 4rem;
+        }
+        .article h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+    <script
+      data-goatcounter="https://abidit.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-content">
+        <a href="../index.html" class="logo">AS<span>.dev</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html#home">Home</a></li>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../index.html#building">Building</a></li>
+          <li><a href="../index.html#writing">Writing</a></li>
+          <li><a href="../index.html#how-i-work">Process</a></li>
+          <li><a href="../index.html#stack">Stack</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle color theme"
+          >
+            ☾
+          </button>
+          <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="article-shell">
+      <article class="article">
+        <header>
+          <p class="byline">Abidit Shrestha &middot; Engineering notes</p>
+          <h1>How We Kept an LLM Feature Reliable at 1.5M-Learner Scale</h1>
+          <p class="subtitle">Five things that broke, and what fixed them</p>
+        </header>
+
+        <div class="intro">
+          <p>
+            For a little over four years I owned the frontend and eventually
+            the AI features for Programiz's B2B Pro Teams platform, used by
+            1.5M+ learners across 40+ institutions.
+          </p>
+          <p>
+            One of those features was SensAI, a GPT-4o-powered hint system
+            that read a learner's current code state and returned either a
+            short code snippet (one to a few lines) or a plain-language nudge
+            toward thinking through edge cases, without handing over a
+            working solution. The model received three inputs through the
+            API: the lesson content, the learner's current code, and
+            structured user context from the primary backend.
+          </p>
+          <p>
+            It worked beautifully in every demo. Then it shipped, and real
+            users showed up with inputs nobody had tried in a demo. This is
+            what broke, in the order we found it, and what we changed each
+            time.
+          </p>
+        </div>
+
+        <section>
+          <span class="section-number">01</span>
+          <h2>The failure mode nobody demos</h2>
+          <p>
+            The first complaints came through user recordings and support
+            messages. Two failure modes showed up together.
+          </p>
+          <p>
+            First, SensAI was giving hints that referenced concepts the
+            learner hadn't reached yet, answering around content outside
+            their current progress rather than meeting them where they were.
+          </p>
+          <p>
+            Second, on simple problems in early lessons, it was handing over
+            the full solution. Not a nudge. The working answer.
+          </p>
+          <p>
+            The system prompt said "don't give the full answer" but that
+            instruction wasn't specific enough to hold. The fix had three
+            parts: we constrained it to one hint at a time, we anchored hints
+            explicitly to concepts the learner had already progressed
+            through, and we added concrete examples in the prompt showing
+            what an acceptable hint looked like versus what it didn't.
+            Negative examples, showing the model the bad output rather than
+            just describing it, were what actually made the constraint
+            stick.
+          </p>
+          <div class="lesson">
+            "Don't do X" in a system prompt is a wish. "Here is what X looks
+            like, and here is what not-X looks like" is a constraint.
+          </div>
+        </section>
+
+        <section>
+          <span class="section-number">02</span>
+          <h2>The hallucination that looked plausible</h2>
+          <p>
+            The subtler failure was the hint that looked plausible but was
+            wrong for the context. The clearest example: SensAI occasionally
+            gave Python-style hints for JavaScript problems. Syntactically
+            confident, pedagogically useless. A learner trying to debug a
+            JavaScript loop would get a hint written in Python idioms, which
+            looked like valid code to someone who didn't know the
+            difference.
+          </p>
+          <p>
+            The model was inferring the language from context and sometimes
+            getting it wrong. The fix was explicit: we added hard language
+            constraints to the system prompt so the model couldn't drift
+            into the wrong syntax regardless of what it inferred from the
+            learner's code.
+          </p>
+          <div class="lesson">
+            Models are confident about things they're wrong about. "Answer
+            in the relevant language" is not a constraint. "This is a
+            JavaScript problem, respond only with JavaScript" is.
+          </div>
+        </section>
+
+        <section>
+          <span class="section-number">03</span>
+          <h2>The latency problem</h2>
+          <p>
+            The pressure we actually felt wasn't cost. It was latency.
+            GPT-4o takes time, and learners who are already frustrated and
+            stuck don't wait gracefully.
+          </p>
+          <p>
+            We didn't change the model or the prompt to fix this. The fix
+            was entirely on the frontend. While the model was generating, we
+            showed a skeleton state so the interface didn't look frozen.
+            Once the response arrived, we rendered it with a typewriter
+            effect, text appearing character by character rather than all
+            at once. The hint felt faster than it was because the learner
+            was watching something happen from the moment they clicked.
+          </p>
+          <div class="lesson">
+            Perceived latency and actual latency are different problems.
+            Sometimes the right fix isn't in the pipeline. It's in what the
+            user sees while they wait.
+          </div>
+        </section>
+
+        <section>
+          <span class="section-number">04</span>
+          <h2>The retry logic we built and threw away</h2>
+          <p>
+            We tried building a fallback store, cached successful hint
+            responses that could be served if a model call failed or timed
+            out, matching on similar cases. The idea was sound. In practice,
+            a hint that was right for one learner's code state was rarely
+            right for another's, even on the same challenge. Context matters
+            too much for caching to work cleanly here.
+          </p>
+          <p>
+            What we kept was simpler: a hard timeout, and a clean "try again
+            later" message on failure. No retry spiral, no confusing
+            fallback hint. Just an honest acknowledgment that the feature
+            wasn't available right now.
+          </p>
+          <div class="lesson">
+            A graceful failure is better than a wrong answer delivered
+            confidently. We ditched the clever solution for the honest one.
+          </div>
+        </section>
+
+        <section>
+          <span class="section-number">05</span>
+          <h2>What the monitoring actually looked like</h2>
+          <p>
+            We built a feedback loop into the UI: upvote, downvote, and a
+            message field. Learners could tell us when a hint was wrong or
+            unhelpful, and they did.
+          </p>
+          <p>
+            The downvote messages turned out to be the most useful debugging
+            tool we had. When hints started drifting, wrong language,
+            out-of-scope concepts, too much of the solution, the messages
+            caught it before it became a systemic problem. I'd read through
+            the flagged cases, trace what input had produced the bad output,
+            and find the weak spot in the prompt.
+          </p>
+          <p>
+            By the time I left, the monitoring setup was simple: a monthly
+            check on the downvote messages. Not a dashboard, not automated
+            alerts. A human looking at whether complaints were coming in and
+            what they said. If the downvote rate was low and the messages
+            weren't flagging a new failure pattern, the feature was healthy.
+          </p>
+          <p>
+            It's not sophisticated. But it caught the real problems. Every
+            prompt fix I shipped came from reading those messages, not from
+            an automated eval.
+          </p>
+          <div class="lesson">
+            Your users will find your failure modes before your tests do.
+            Build the feedback channel before you need it.
+          </div>
+        </section>
+
+        <div class="closing">
+          <p>
+            None of this is exotic. It's the unglamorous half of shipping an
+            AI feature, the half that doesn't show up in a demo and is
+            exactly the half that determines whether the feature is still
+            trusted six months after launch.
+          </p>
+          <p>
+            The work is: trace the failure modes, read the feedback, fix the
+            prompt, repeat. That's it.
+          </p>
+          <p class="closing-cta">
+            Building something similar and want to compare notes?
+            <a
+              href="../index.html#contact"
+              data-goatcounter-click="cta-writing-contact"
+              >Let's talk &rarr;</a
+            >
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <span class="footer-logo">AS<span>.dev</span></span>
+          <span class="footer-sysarch">// SYS_ARCH.V4</span>
+          <div class="footer-links">
+            <a
+              href="https://github.com/Abidit"
+              target="_blank"
+              rel="noopener"
+              data-goatcounter-click="outbound-github-footer"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/abidit-shrestha-ba6707206/"
+              target="_blank"
+              rel="noopener"
+              data-goatcounter-click="outbound-linkedin-footer"
+              >LinkedIn</a
+            >
+          </div>
+          <span class="footer-copyright"
+            >&copy; 2026 Abidit Shrestha. Engineered with precision &amp;
+            performance.</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../main.js"></script>
+  </body>
+</html>

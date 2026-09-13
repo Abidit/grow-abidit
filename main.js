@@ -155,6 +155,18 @@ const products = [
   },
 ];
 
+const writing = [
+  {
+    name: "How We Kept an LLM Feature Reliable at 1.5M-Learner Scale",
+    status: "Essay",
+    description:
+      "Five things that broke building SensAI, Programiz's GPT-4o hint system for 1.5M+ learners, and what fixed them.",
+    tags: ["GPT-4o", "Prompt Engineering", "Reliability"],
+    href: "./writing/llm-reliability.html",
+    goatcounterClick: "writing-click-llm-reliability",
+  },
+];
+
 const steps = [
   {
     title: "Find the real problem before writing code",
@@ -290,9 +302,10 @@ function renderBuildGroup(containerId, items) {
   const grid = document.getElementById(containerId);
   if (!grid) return;
   grid.innerHTML = items
-    .map(
-      (item) => `
-    <a href="${item.href}" target="_blank" rel="noopener" class="build-card reveal${item.filled ? " build-card-filled" : ""}" data-goatcounter-click="${item.goatcounterClick}">
+    .map((item) => {
+      const isExternal = /^https?:\/\//.test(item.href);
+      return `
+    <a href="${item.href}"${isExternal ? ' target="_blank" rel="noopener"' : ""} class="build-card reveal${item.filled ? " build-card-filled" : ""}" data-goatcounter-click="${item.goatcounterClick}">
       <div class="build-card-top">
         <span class="build-name">${item.name}</span>
         <span class="badge ${statusClass(item.status)}">${item.status}</span>
@@ -305,8 +318,8 @@ function renderBuildGroup(containerId, items) {
         <span class="build-arrow" aria-hidden="true">↗</span>
       </div>
     </a>
-  `,
-    )
+  `;
+    })
     .join("");
 }
 
@@ -506,6 +519,7 @@ function initScrollDepthTracking() {
   const sections = [
     { id: "work", path: "case-studies" },
     { id: "building", path: "building" },
+    { id: "writing", path: "writing" },
     { id: "how-i-work", path: "how-i-work" },
     { id: "stack", path: "stack" },
     { id: "contact", path: "contact" },
@@ -538,6 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderStats();
   renderCases();
   renderBuilding();
+  renderBuildGroup("writing-grid", writing);
   renderSteps();
   renderStackGroups();
   renderCredBadges();
